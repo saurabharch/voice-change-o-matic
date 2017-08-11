@@ -82,6 +82,7 @@ var canvasCtx = canvas.getContext("2d");
 var intendedWidth = document.querySelector('.wrapper').clientWidth;
 
 canvas.setAttribute('width',intendedWidth);
+canvas.setAttribute('height',window.innerHeight);
 
 var visualSelect = document.getElementById("visual");
 
@@ -125,6 +126,7 @@ function visualize() {
   WIDTH = canvas.width;
   HEIGHT = canvas.height;
 
+  console.log('height', HEIGHT)
 
   var visualSetting = visualSelect.value;
   console.log(visualSetting);
