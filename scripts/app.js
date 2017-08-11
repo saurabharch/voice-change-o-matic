@@ -177,9 +177,8 @@ function visualize() {
     draw();
 
   } else if(visualSetting == "frequencybars") {
-    analyser.fftSize = 256;
+    analyser.fftSize = 4096;
     var bufferLength = analyser.frequencyBinCount;
-    console.log(bufferLength);
     var dataArray = new Uint8Array(bufferLength);
 
     canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -199,8 +198,9 @@ function visualize() {
       for(var i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
 
-        canvasCtx.fillStyle = 'rgb(' + (barHeight+100) + ',50,50)';
-        canvasCtx.fillRect(x,HEIGHT-barHeight/2,barWidth,barHeight/2);
+        canvasCtx.fillStyle = 'rgb(' + (i * 1) + ',' + (i * 2) + ',' + (barHeight+100) + ')';
+        canvasCtx.fillRect(x,HEIGHT-barHeight,barWidth,barHeight);
+        canvasCtx.globalAlpha = 1;
 
         x += barWidth + 1;
       }
