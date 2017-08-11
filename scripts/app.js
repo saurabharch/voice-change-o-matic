@@ -23,7 +23,7 @@ var mute = document.querySelector('.mute');
 var analyser = audioCtx.createAnalyser();
 analyser.minDecibels = -90;
 analyser.maxDecibels = -10;
-analyser.smoothingTimeConstant = 0.85;
+analyser.smoothingTimeConstant = 3;
 
 var distortion = audioCtx.createWaveShaper();
 var gainNode = audioCtx.createGain();
@@ -177,7 +177,7 @@ function visualize() {
     draw();
 
   } else if(visualSetting == "frequencybars") {
-    analyser.fftSize = 512;
+    analyser.fftSize = 1024;
     var bufferLength = analyser.frequencyBinCount;
     var dataArray = new Uint8Array(bufferLength);
 
@@ -196,7 +196,7 @@ function visualize() {
       var x = 0;
 
       for(var i = 0; i < bufferLength; i++) {
-        barHeight = dataArray[i];
+        barHeight = dataArray[i] * 2;
 
         canvasCtx.fillStyle = 'rgb(' + (i * 1) + ',' + (i * 2) + ',' + (barHeight+100) + ')';
         canvasCtx.fillRect(x,HEIGHT-barHeight,barWidth,barHeight);
