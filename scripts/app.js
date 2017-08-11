@@ -21,8 +21,8 @@ var mute = document.querySelector('.mute');
 //set up the different audio nodes we will use for the app
 
 var analyser = audioCtx.createAnalyser();
-analyser.minDecibels = -90;
-analyser.maxDecibels = -10;
+analyser.minDecibels = -120;
+analyser.maxDecibels = -20;
 analyser.smoothingTimeConstant = .85;
 
 var distortion = audioCtx.createWaveShaper();
@@ -196,7 +196,7 @@ function visualize() {
       var x = 0;
 
       for(var i = 0; i < bufferLength; i++) {
-        barHeight = dataArray[i] * 2;
+        barHeight = dataArray[i] * 2.5;
 
         canvasCtx.fillStyle = 'rgb(' + (i * 1) + ',' + (i * 2) + ',' + (barHeight+100) + ')';
         canvasCtx.fillRect(x,HEIGHT-barHeight,barWidth,barHeight);
